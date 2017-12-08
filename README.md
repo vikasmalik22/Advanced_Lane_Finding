@@ -110,9 +110,9 @@ def GetPerspectiveTransformMatrix(src, dst):
 I applied the Region of Interest (ROI) or mask to my images which appears in code cell 8 in `apply_roi()`. The masked area values are hardcoded inside the funtion.
 Following is the result you get after applying gradient and masking:
 
-![Maksed1](https://github.com/vikasmalik22/Advanced_Lane_Finding/blob/master/output_images/Maksed1.PNG)
+![Masked1](https://github.com/vikasmalik22/Advanced_Lane_Finding/blob/master/output_images/Masked1.PNG)
 
-![Maksed2](https://github.com/vikasmalik22/Advanced_Lane_Finding/blob/master/output_images/Maksed2.PNG)
+![Maksed2](https://github.com/vikasmalik22/Advanced_Lane_Finding/blob/master/output_images/Masked2.PNG)
 
 Following is the result you get after applying warping on the masked gradient images:
 
@@ -126,7 +126,7 @@ The functions `Initial_LineSearch()` and `Look_AheadSearch()`, identifies lane l
 
 ![Sliding_Window](https://github.com/vikasmalik22/Advanced_Lane_Finding/blob/master/output_images/Sliding_Window.PNG)
 
-Somehow the windowa didn't show up in my python notebook but appears fine in pycharm.
+Somehow the windows didn't show up in my python notebook but appears fine in pycharm.
 
 The `Look_AheadSearch()` finds the left and right lane line indices based on the previous polynomial fit values of left and right lines. The function performs the same task, but leverages by using a previous fit (from a previous video frame, for example) and only searches for lane pixels within a certain range of that fit.
 
