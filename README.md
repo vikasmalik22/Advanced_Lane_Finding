@@ -41,14 +41,15 @@ I start by preparing "object points", which will be the (x, y, z) coordinates of
 
 I then used the output `objpoints` and `imgpoints` to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function.  
 
-![CameraCalibration1](https://github.com/vikasmalik22/Advanced_Lane_Finding/tree/master/examples/output_images/CameraCalibration1.png)
-![CameraCalibration2](https://github.com/vikasmalik22/Advanced_Lane_Finding/tree/master/examples/output_images/CameraCalibration2.png)
+![CameraCalibration1](https://github.com/vikasmalik22/Advanced_Lane_Finding/blob/master/output_images/CameraCalibration1.png)
+
+![CameraCalibration2](https://github.com/vikasmalik22/Advanced_Lane_Finding/blob/master/output_images/CameraCalibration2.png)
 
 From above we can see that there are 3 images calibration1.jpg, calibration4.jpg and calibration5.jpg which do not have any corner lines connected to them because the number of specified corners are not being found in these images. So they are not used for camera calibration.
 
 I applied this distortion correction to the test image using the `cv2.undistort()` function and obtained this result: 
 
-![undistort_output](https://github.com/vikasmalik22/Advanced_Lane_Finding/tree/master/examples/output_images/undistort_output.png)
+![undistort_output](https://github.com/vikasmalik22/Advanced_Lane_Finding/blob/master/output_images/undistort_output.png)
 
 ### Pipeline (single images)
 
@@ -56,7 +57,7 @@ I applied this distortion correction to the test image using the `cv2.undistort(
 
 To demonstrate this step, I will describe how I apply the distortion correction to one of the test images
 
-![Undistorted1](https://github.com/vikasmalik22/Advanced_Lane_Finding/tree/master/examples/output_images/undistorted.png)
+![Undistorted1](https://github.com/vikasmalik22/Advanced_Lane_Finding/blob/master/output_images/undistorted.png)
 
 The effect of undistort is not so easy to recognize above, but can be perceived from the difference in shape of the hood of the car at the bottom corners of the image.
 
@@ -68,9 +69,9 @@ Finally, I chose the sobel gradient thresholds horizontal x and direction. I cho
 
 Here's an example of my output for this step. 
 
-![Gradient1](https://github.com/vikasmalik22/Advanced_Lane_Finding/tree/master/examples/output_images/Gradient1.png)
+![Gradient1](https://github.com/vikasmalik22/Advanced_Lane_Finding/blob/master/output_images/Gradient1.png)
 
-![Graident2](https://github.com/vikasmalik22/Advanced_Lane_Finding/tree/master/examples/output_images/Gradient2.png)
+![Graident2](https://github.com/vikasmalik22/Advanced_Lane_Finding/blob/master/output_images/Gradient2.png)
 
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
@@ -102,28 +103,28 @@ def GetPerspectiveTransformMatrix(src, dst):
     return M, Minv
 ```
 
-![Warped1](https://github.com/vikasmalik22/Advanced_Lane_Finding/tree/master/examples/output_images/Warped1.png)
+![Warped1](https://github.com/vikasmalik22/Advanced_Lane_Finding/blob/master/output_images/Warped1.png)
 
-![Warped2](https://github.com/vikasmalik22/Advanced_Lane_Finding/tree/master/examples/output_images/Warped2.png)
+![Warped2](https://github.com/vikasmalik22/Advanced_Lane_Finding/blob/master/output_images/Warped2.png)
 
 I applied the Region of Interest (ROI) or mask to my images which appears in code cell 8 in `apply_roi()`. The masked area values are hardcoded inside the funtion.
 Following is the result you get after applying gradient and masking:
 
-![Maksed1](https://github.com/vikasmalik22/Advanced_Lane_Finding/tree/master/examples/output_images/Maksed1.png)
+![Maksed1](https://github.com/vikasmalik22/Advanced_Lane_Finding/blob/master/output_images/Maksed1.png)
 
-![Maksed2](https://github.com/vikasmalik22/Advanced_Lane_Finding/tree/master/examples/output_imagess/Maksed2.png)
+![Maksed2](https://github.com/vikasmalik22/Advanced_Lane_Finding/blob/master/output_images/Maksed2.png)
 
 Following is the result you get after applying warping on the masked gradient images:
 
-![Warped_Gradient1](https://github.com/vikasmalik22/Advanced_Lane_Finding/tree/master/examples/output_images/Warped_Gradient1.png)
+![Warped_Gradient1](https://github.com/vikasmalik22/Advanced_Lane_Finding/blob/master/output_images/Warped_Gradient1.png)
 
-![Warped_Gradient2](https://github.com/vikasmalik22/Advanced_Lane_Finding/tree/master/examples/output_images/Warped_Gradient2.png)
+![Warped_Gradient2](https://github.com/vikasmalik22/Advanced_Lane_Finding/blob/master/output_images/Warped_Gradient2.png)
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
 The functions `Initial_LineSearch()` and `Look_AheadSearch()`, identifies lane lines and fit a second order polynomial to both right and left lane lines, are present in code cell 18 and 26. The `Initial_LineSearch()` computes a histogram of the bottom half of the image and finds the bottom-most x position (or "base") of the left and right lane lines. These locations are identified from the local maxima of the left and right halves of the histogram. The function then identifies 10 windows from which to identify lane pixels, each one centered on the midpoint of the pixels from the window below. This effectively "follows" the lane lines up to the top of the binary image, and speeds processing by only searching for activated pixels over a small portion of the image. Pixels belonging to each lane line are identified and the Numpy polyfit() method fits a second order polynomial to each set of pixels. The image below demonstrates how this process works:
 
-![Sliding_Window](https://github.com/vikasmalik22/Advanced_Lane_Finding/tree/master/examples/output_images/Sliding_Window.png)
+![Sliding_Window](https://github.com/vikasmalik22/Advanced_Lane_Finding/blob/master/output_images/Sliding_Window.png)
 
 Somehow the windowa didn't show up in my python notebook but appears fine in pycharm.
 
@@ -131,7 +132,7 @@ The `Look_AheadSearch()` finds the left and right lane line indices based on the
 
 The image below shows the histogram generated by `Look_AheadSearch()`; the resulting base points for the left and right lanes - the two peaks nearest the center - are clearly visible:
 
-![Histogram](https://github.com/vikasmalik22/Advanced_Lane_Finding/tree/master/examples/output_images/Histogram.png)
+![Histogram](https://github.com/vikasmalik22/Advanced_Lane_Finding/blob/master/output_images/Histogram.png)
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
@@ -173,7 +174,7 @@ left_line_window = np.array(np.transpose(np.vstack([left_x_predictions, y_points
 
 Here is an example of my result on a test image:
 
-![Processed](https://github.com/vikasmalik22/Advanced_Lane_Finding/tree/master/examples/output_images/Processed.png)
+![Processed](https://github.com/vikasmalik22/Advanced_Lane_Finding/blob/master/output_images/Processed.png)
 
 ---
 
