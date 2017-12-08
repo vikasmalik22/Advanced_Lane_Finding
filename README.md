@@ -162,7 +162,7 @@ left_line_window = np.array(np.transpose(np.vstack([left_x_predictions, y_points
     unwarped = cv2.warpPerspective(out_img, Minv, img_size , flags=cv2.INTER_LINEAR)
 
     result = cv2.addWeighted(img, 1, unwarped, 0.3, 0)
-    
+    [](http://)
     # compute the radius of curvature
     left_curve_rad = measure_radius_of_curvature(left_x_predictions)
     right_curve_rad = measure_radius_of_curvature(right_x_predictions)
@@ -182,8 +182,11 @@ Here is an example of my result on a test image:
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
 
-Here's a [link to my video result](./project_video.mp4)
+Here's a link to my video result
 
+[Project Video](https://github.com/vikasmalik22/Advanced_Lane_Finding/blob/master/test_videos_output/project_video_out.mp4)
+
+[Challenge Video](https://github.com/vikasmalik22/Advanced_Lane_Finding/blob/master/test_videos_output/challenge_video_out.mp4)
 ---
 
 ### Discussion
